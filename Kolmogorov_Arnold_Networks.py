@@ -71,3 +71,13 @@ def generate_test_data(n_samples=1000):
     X = np.random.uniform(-1, 1, (n_samples, 2))
     y = np.sin(X[:, 0] * np.pi) * np.cos(X[:, 1] * np.pi)
     return X, y.reshape(-1, 1)
+
+#==========================================================
+# Generate sample data
+X, y = generate_test_data(1000)
+
+# Train the model
+model, history = train_kan_model(X, y)
+
+# Make predictions
+predictions = model.predict(X)
