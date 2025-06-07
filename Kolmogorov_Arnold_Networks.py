@@ -6,7 +6,8 @@ class KANLayer(layers.Layer):
     def __init__(self, units, **kwargs):
         super(KANLayer, self).__init__(**kwargs)
         self.units = units
-    
+
+    # build function gets called automatically when you train.
     def build(self, input_shape):
         # Inner function weights (fixed)
         self.inner_kernel = self.add_weight(
@@ -65,10 +66,11 @@ def train_kan_model(X_train, y_train, epochs=100, batch_size=32):
     
     return model, history
 
-# Example data generation for testing
+# Create data with 2 features.
 def generate_test_data(n_samples=1000):
     np.random.seed(42)
-    X = np.random.uniform(-1, 1, (n_samples, 2))
+    num_feature = 2
+    X = np.random.uniform(-1, 1, (n_samples, num_feature))
     y = np.sin(X[:, 0] * np.pi) * np.cos(X[:, 1] * np.pi)
     return X, y.reshape(-1, 1)
 
